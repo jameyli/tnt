@@ -18,6 +18,7 @@
 #include <sys/stat.h>
 #include <iostream>
 #include <sstream>
+#include <libgen.h>
 #include "ansi_color.h"
 #include "code_inbox.h"
 #include "application_base.h"
