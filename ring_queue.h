@@ -1,6 +1,6 @@
 /**
  * @file:   ring_queue.h
- * @author: jameyli <jameyli AT tencent DOT com>
+ * @author: jameyli <lgy AT live DOT com>
  * @date:   2013-09-11
  * @brief:  ring queue 固定大小的环形队列
  *

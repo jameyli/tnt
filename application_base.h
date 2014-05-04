@@ -1,6 +1,6 @@
 /**
  * @file:   application_base.h
- * @author: jameyli <jameyli AT tencent DOT com>
+ * @author: jameyli <lgy AT live DOT com>
  * @date:   2013-09-19
  * @brief:  进程框架
  *

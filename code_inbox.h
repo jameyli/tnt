@@ -1,6 +1,6 @@
 /**
  * @file:   code_inbox.h
- * @author: jameyli <jameyli AT tencent DOT com>
+ * @author: jameyli <lgy AT live DOT com>
  * @date:   2013-10-12
  * @brief:  代码收件箱
  *

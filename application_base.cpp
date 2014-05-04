@@ -1,12 +1,9 @@
 /**
  * @file:   application_base.cpp
- * @author: jameyli <jameyli AT tencent DOT com>
+ * @author: jameyli <lgy AT live DOT com>
  * @date:   2013-09-19
  * @brief:  进程框架
  *
- * $Revision: 49478 $
- * $LastChangedBy: jameyli $
- * $LastChangedDate: 2013-10-08 11:22:05 +0800 (Tue, 08 Oct 2013) $
  */
 
 
