@@ -77,18 +77,18 @@ VaLogHandler* SetVaLogHandler(VaLogHandler* new_func);
 void Logging(const LogRecord& lr, const char* fmt, ...);
 
 
-#define LOG(log_level, log_id, user_id, user_name, fmt, ...) \
+#define LOG(log_level, log_id, user_id, user_name, fmt, args...) \
     do\
     {\
         tnt::LogRecord lr(log_level, log_id, user_id, user_name, __FILE__, __LINE__, __FUNCTION__);\
-        tnt::Logging(lr, fmt, __VA_ARGS__);\
+        tnt::Logging(lr, fmt, ##args);\
     } while(0)
 
-#define LOG_ERROR(log_id, user_id, user_name, fmt, ...)   LOG(tnt::LOG_LEVEL_ERROR, log_id, user_id, user_name, fmt, __VA_ARGS__)
-#define LOG_WARN(log_id, user_id, user_name, fmt, ...)    LOG(tnt::LOG_LEVEL_WARN, log_id, user_id, user_name, fmt, __VA_ARGS__)
-#define LOG_INFO(log_id, user_id, user_name, fmt, ...)    LOG(tnt::LOG_LEVEL_INFO, log_id, user_id, user_name, fmt, __VA_ARGS__)
-#define LOG_DEBUG(log_id, user_id, user_name, fmt, ...)   LOG(tnt::LOG_LEVEL_DEBUG, log_id, user_id, user_name, fmt, __VA_ARGS__)
-#define LOG_TRACE(log_id, user_id, user_name, fmt, ...)   LOG(tnt::LOG_LEVEL_TRACE, log_id, user_id, user_name, fmt, __VA_ARGS__)
+#define LOG_ERROR(log_id, user_id, user_name, fmt, args...)   LOG(tnt::LOG_LEVEL_ERROR, log_id, user_id, user_name, fmt, ##args)
+#define LOG_WARN(log_id, user_id, user_name, fmt, args...)    LOG(tnt::LOG_LEVEL_WARN, log_id, user_id, user_name, fmt, ##args)
+#define LOG_INFO(log_id, user_id, user_name, fmt, args...)    LOG(tnt::LOG_LEVEL_INFO, log_id, user_id, user_name, fmt, ##args)
+#define LOG_DEBUG(log_id, user_id, user_name, fmt, args...)   LOG(tnt::LOG_LEVEL_DEBUG, log_id, user_id, user_name, fmt, ##args)
+#define LOG_TRACE(log_id, user_id, user_name, fmt, args...)   LOG(tnt::LOG_LEVEL_TRACE, log_id, user_id, user_name, fmt, ##args)
 
 struct FuncTraceStruct
 {

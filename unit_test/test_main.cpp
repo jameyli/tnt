@@ -37,5 +37,8 @@ GTEST_API_ int main(int argc, char **argv) {
 
   testing::InitGoogleTest(&argc, argv);
 
+  LOG_INFO(0, 123, "一二三", "this is log test");
+  LOG_INFO(0, 123, "yiersan", "%s", "nihao");
+
   return RUN_ALL_TESTS();
 }
