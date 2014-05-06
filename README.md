@@ -19,4 +19,10 @@ tnt : library from TNT
 * 协议
 * 通信
 
+如何编译？
+=========
+
+    scons
+    使用scons 主要是觉得简单
+
 
