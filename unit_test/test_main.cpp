@@ -30,12 +30,11 @@
 #include <iostream>
 
 #include "gtest/gtest.h"
-#include "comm/log/pet_log.h"
+#include "logging.h"
 
 GTEST_API_ int main(int argc, char **argv) {
   std::cout << "== Welcome to use TNT lib server unit test! ==\n";
 
-  OpenPetLog("test_tntlib", 5, "test_tntlib");
   testing::InitGoogleTest(&argc, argv);
 
   return RUN_ALL_TESTS();

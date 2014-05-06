@@ -5,7 +5,7 @@
  * @brief:
  */
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "gmock/gmock.h"
 #include <stdio.h>
 #include "application_base.h"

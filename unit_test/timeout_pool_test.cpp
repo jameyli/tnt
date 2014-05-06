@@ -12,7 +12,7 @@ using namespace testing;
 using namespace tnt;
 
 class TimeoutPoolTest : public Test
-
+{
 protected:
     static void SetUpTestCase()
     {

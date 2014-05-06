@@ -1,0 +1,4 @@
+env = Environment()
+env.Append(CPPPATH = '/usr/local/homebrew/include/',
+        CXXFLAGS="-std=c++11")
+env.Library('libtntdetail.a', ['timeout_pool.cpp'])
