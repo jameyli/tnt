@@ -5,8 +5,6 @@
  * @brief:  进程框架
  *
  */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -79,7 +77,6 @@ ApplicationBase::Init(int argc, char** argv)
 
     // 信号处理
     InitSigHandler();
-
 
     // 这里是防止起两个相同的进程, 如果之前的进程存在，就直接kill掉
     SendSignal(SIGQUIT);
@@ -266,7 +263,6 @@ int ApplicationBase::GetOpt(int argc, char** argv)
         exit(0);
     }
 
-
 	bool is_start = false;
 	bool is_daemon = false;
 
@@ -356,7 +352,6 @@ int ApplicationBase::GetOpt(int argc, char** argv)
         }
     }
 
-
 	//  process <start/stop/reload/kill>
 	for( opt=optind; opt<argc; opt++ )
 	{
@@ -397,7 +392,6 @@ int ApplicationBase::GetOpt(int argc, char** argv)
     }
 
 	//  restore the getopt environment.
-
 	optarg	=	NULL;
 	optind	=	1;
 	optopt	=	'?';

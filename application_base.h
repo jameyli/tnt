@@ -4,11 +4,6 @@
  * @date:   2013-09-19
  * @brief:  进程框架
  *
- * $Revision: 49478 $
- * $LastChangedBy: jameyli $
- * $LastChangedDate: 2013-10-08 11:22:05 +0800 (Tue, 08 Oct 2013) $
- *
- *
  * 试图提供一种快速开发的解决方案
  * 1 快速开发，只需要实现业务逻辑就可以
  * 2 提供统一的运行数据统计与监控
@@ -31,20 +26,18 @@
  * 当然可以使用单例
  typedef boost::serialization::singleton<MyApplication> MyApplicationSigleton;
 
-    int main(int argc, char** argv)
-    {
-        MyApplicationSigleton.Init(argc, argv);
-        return MyApplicationSigleton.Run();
-    }
- *
- *
+ int main(int argc, char** argv)
+ {
+ MyApplicationSigleton.Init(argc, argv);
+ return MyApplicationSigleton.Run();
+ }
+
  */
 
 #ifndef APPLICATION_BASE_H
 #define APPLICATION_BASE_H
 
 #include <string>
-
 
 namespace tnt
 {
@@ -101,7 +94,6 @@ public:
      */
     const std::string StatStr() const;
 
-
     /**
      * @brief: 总tick数, 结合tick_timer可以精确控制定时
      */
@@ -135,7 +127,6 @@ private:
     static bool is_exit_;
     static bool is_reload_;
 
-
     // 统计数据
     size_t total_proc_count_;
     size_t total_tick_count_;
@@ -163,7 +154,6 @@ private:
 
 private:
     // 配置
-
     std::string app_name_;
     std::string conf_file_;
     std::string id_;
@@ -173,7 +163,6 @@ private:
     time_t tick_timer_;
 
     std::string pid_file_;
-
 }; // class ApplicationBase
 
 } // namespace tntlib
