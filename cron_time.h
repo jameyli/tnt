@@ -1,6 +1,6 @@
 /**
  * @file:   cron_time.h
- * @author: jameyli <jameyli AT tencent DOT com>
+ * @author: jameyli <lgy AT live DOT com>
  * @brief:  类似crontab的时间配置
  * 实现的比较土... 尤其是初始化
  * 不过初始化只有一次

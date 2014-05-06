@@ -1,11 +1,12 @@
 /**
- * @file:   tnt_transaction_mgr.cpp
+ * @file:   transaction_mgr.cpp
  * @author: jameyli <lgy AT live DOT com>
  * @brief:
  */
 
-#include "tnt_transaction_mgr.h"
-#include "tnt_app_frame.h"
+#include "transaction_mgr.h"
+#include "app_frame.h"
+#include "logging.h"
 
 TransactionMgr::TransactionMgr()
 {

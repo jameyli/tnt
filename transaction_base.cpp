@@ -1,11 +1,12 @@
 /**
- * @file:   tnt_transaction_base.cpp
+ * @file:   transaction_base.cpp
  * @author: jameyli <lgy AT live DOT com>
  * @brief:
  */
 
-#include "tnt_transaction_base.h"
-#include "tnt_transaction_mgr.h"
+#include "transaction_base.h"
+#include "transaction_mgr.h"
+#include "logging.h"
 
 TransactionBase::TransactionBase(unsigned int cmd)
 :   id_(0),

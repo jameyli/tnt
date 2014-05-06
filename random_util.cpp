@@ -1,10 +1,10 @@
 /**
- * @file:   tnt_random_util.cpp
+ * @file:   random_util.cpp
  * @author: jameyli <jameyli AT tencent DOT com>
  * @brief:  随机工具类
  */
 
-#include "tnt_random_util.h"
+#include "random_util.h"
 #include <iostream>
 
 unsigned int RandomUtil::seed_ = 0;

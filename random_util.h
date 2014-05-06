@@ -4,8 +4,8 @@
  * @brief:  随机工具类
  */
 
-#ifndef TNT_RANDOM_UTIL_H
-#define TNT_RANDOM_UTIL_H
+#ifndef RANDOM_UTIL_H
+#define RANDOM_UTIL_H
 
 #include <unistd.h>
 #include <stdlib.h>

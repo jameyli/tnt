@@ -1,13 +1,13 @@
 /**
- * @file:   tnt_transaction_base.h
+ * @file:   transaction_base.h
  * @author: jameyli <lgy AT live DOT com>
  * @brief:  事务(或会话, 不过会话一般是指一次连接，而这里其实是一次请求)的基类
  */
 
-#ifndef TNT_TRANSACTION_BASE_H
-#define TNT_TRANSACTION_BASE_H
+#ifndef TRANSACTION_BASE_H
+#define TRANSACTION_BASE_H
 
-#include "tnt_app_frame.h"
+#include "app_frame.h"
 
 /**
  * @brief:  事务类

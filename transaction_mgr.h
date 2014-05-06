@@ -1,5 +1,5 @@
 /**
- * @file:   tnt_transaction_mgr.h
+ * @file:   transaction_mgr.h
  * @author: jameyli <lgy AT live DOT com>
  * @brief:  事务管理器
  *
@@ -45,8 +45,8 @@
  *
  */
 
-#ifndef TNT_TRANSACTION_MGR_H
-#define TNT_TRANSACTION_MGR_H
+#ifndef TRANSACTION_MGR_H
+#define TRANSACTION_MGR_H
 
 #include <vector>
 #include <tr1/unordered_map>
