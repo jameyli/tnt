@@ -6,8 +6,8 @@
  * @date:   2014-04-16
  */
 
-#ifndef TNT_TIMEOUT_POOL_H
-#define TNT_TIMEOUT_POOL_H
+#ifndef TIMEOUT_POOL_H
+#define TIMEOUT_POOL_H
 
 #include <stdint.h>
 #include <functional>

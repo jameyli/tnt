@@ -213,8 +213,8 @@ private:
 
     AppFrame app_frame_;
 
-    snslib::BusHeader bus_header_;
-    snslib::AppHeader app_header_;
+    // snslib::BusHeader bus_header_;
+    // snslib::AppHeader app_header_;
 };
 
 #endif //TNT_TRANSACTION_BASE_H
