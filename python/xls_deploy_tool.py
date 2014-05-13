@@ -412,6 +412,7 @@ class DataParser:
 
         try:
             self._module_name = "tnt_deploy_" + self._sheet_name.lower() + "_pb2"
+            sys.path.append(os.getcwd())
             exec('from '+self._module_name + ' import *');
             self._module = sys.modules[self._module_name]
         except BaseException, e :
