@@ -92,8 +92,8 @@ class LogHelp :
         formatter = logging.Formatter('%(asctime)s|%(levelname)s|%(lineno)d|%(funcName)s|%(message)s')
         hdlr.setFormatter(formatter)
         LogHelp._logger.addHandler(hdlr)
-        # LogHelp._logger.setLevel(logging.NOTSET)
-        LogHelp._logger.setLevel(logging.WARNING)
+        LogHelp._logger.setLevel(logging.NOTSET)
+        # LogHelp._logger.setLevel(logging.WARNING)
 
         LogHelp._logger.info("\n\n\n")
         LogHelp._logger.info("logger is inited!")
@@ -112,6 +112,12 @@ class LogHelp :
             if LogHelp._logger is None :
                 return
             logging.shutdown()
+
+# log macro
+LOG_DEBUG=LogHelp.get_logger().debug
+LOG_INFO=LogHelp.get_logger().info
+LOG_WARN=LogHelp.get_logger().warn
+LOG_ERROR=LogHelp.get_logger().error
 
 
 class SheetInterpreter:
@@ -155,7 +161,7 @@ class SheetInterpreter:
 
     def Interpreter(self) :
         """对外的接口"""
-        LogHelp.get_logger().info("begin Interpreter, row_count = %d, col_count = %d", self._row_count, self._col_count)
+        LOG_INFO("begin Interpreter, row_count = %d, col_count = %d", self._row_count, self._col_count)
 
         self._LayoutFileHeader()
 
@@ -185,7 +191,7 @@ class SheetInterpreter:
             raise
 
     def _FieldDefine(self, repeated_num) :
-        LogHelp.get_logger().info("row=%d, col=%d, repeated_num=%d", self._row, self._col, repeated_num)
+        LOG_INFO("row=%d, col=%d, repeated_num=%d", self._row, self._col, repeated_num)
         field_rule = str(self._sheet.cell_value(FIELD_RULE_ROW, self._col))
 
         if field_rule == "required" or field_rule == "optional" :
@@ -193,7 +199,7 @@ class SheetInterpreter:
             field_name = str(self._sheet.cell_value(FIELD_NAME_ROW, self._col)).strip()
             field_comment = unicode(self._sheet.cell_value(FIELD_COMMENT_ROW, self._col))
 
-            LogHelp.get_logger().info("%s|%s|%s|%s", field_rule, field_type, field_name, field_comment)
+            LOG_INFO("%s|%s|%s|%s", field_rule, field_type, field_name, field_comment)
 
             comment = field_comment.encode("utf-8")
             self._LayoutComment(comment)
@@ -210,12 +216,12 @@ class SheetInterpreter:
             # 2011-11-29 修改
             # 若repeated第二行是类型定义，则表示当前字段是repeated，并且数据在单列用分好相隔
             second_row = str(self._sheet.cell_value(FIELD_TYPE_ROW, self._col)).strip()
-            LogHelp.get_logger().debug("repeated|%s", second_row);
+            LOG_DEBUG("repeated|%s", second_row);
             # exel有可能有小数点
             if second_row.isdigit() or second_row.find(".") != -1 :
                 # 这里后面一般会是一个结构体
                 repeated_num = int(float(second_row))
-                LogHelp.get_logger().info("%s|%d", field_rule, repeated_num)
+                LOG_INFO("%s|%d", field_rule, repeated_num)
                 self._col += 1
                 self._FieldDefine(repeated_num)
             else :
@@ -223,7 +229,7 @@ class SheetInterpreter:
                 field_type = second_row
                 field_name = str(self._sheet.cell_value(FIELD_NAME_ROW, self._col)).strip()
                 field_comment = unicode(self._sheet.cell_value(FIELD_COMMENT_ROW, self._col))
-                LogHelp.get_logger().info("%s|%s|%s|%s", field_rule, field_type, field_name, field_comment)
+                LOG_INFO("%s|%s|%s|%s", field_rule, field_type, field_name, field_comment)
 
                 comment = field_comment.encode("utf-8")
                 self._LayoutComment(comment)
@@ -237,7 +243,7 @@ class SheetInterpreter:
             struct_name = str(self._sheet.cell_value(FIELD_NAME_ROW, self._col)).strip()
             field_name = str(self._sheet.cell_value(FIELD_COMMENT_ROW, self._col)).strip()
 
-            LogHelp.get_logger().info("%s|%d|%s|%s", field_rule, field_num, struct_name, field_name)
+            LOG_INFO("%s|%d|%s|%s", field_rule, field_num, struct_name, field_name)
 
 
             if (self._IsStructDefined(struct_name)) :
@@ -421,7 +427,7 @@ class DataParser:
 
     def Parse(self) :
         """对外的接口:解析数据"""
-        LogHelp.get_logger().info("begin parse, row_count = %d, col_count = %d", self._row_count, self._col_count)
+        LOG_INFO("begin parse, row_count = %d, col_count = %d", self._row_count, self._col_count)
 
         item_array = getattr(self._module, self._sheet_name+'_ARRAY')()
 
@@ -438,12 +444,12 @@ class DataParser:
             # 如果 id 是 空 直接跳过改行
             info_id = str(self._sheet.cell_value(self._row, id_col)).strip()
             if info_id == "" :
-                LogHelp.get_logger().warn("%d is None", self._row)
+                LOG_WARN("%d is None", self._row)
                 continue
             item = item_array.items.add()
             self._ParseLine(item)
 
-        LogHelp.get_logger().info("parse result:\n%s", item_array)
+        LOG_INFO("parse result:\n%s", item_array)
 
         self._WriteReadableData2File(str(item_array))
 
@@ -455,7 +461,7 @@ class DataParser:
         LogHelp.close()
 
     def _ParseLine(self, item) :
-        LogHelp.get_logger().info("%d", self._row)
+        LOG_INFO("%d", self._row)
 
         self._col = 0
         while self._col < self._col_count :
@@ -471,8 +477,8 @@ class DataParser:
                 field_name = str(name_and_value[0]).strip()
             field_type = str(self._sheet.cell_value(1, self._col)).strip()
 
-            LogHelp.get_logger().info("%d|%d", self._row, self._col)
-            LogHelp.get_logger().info("%s|%s|%s", field_rule, field_type, field_name)
+            LOG_INFO("%d|%d", self._row, self._col)
+            LOG_INFO("%s|%s|%s", field_rule, field_type, field_name)
 
             if max_repeated_num == 0 :
                 field_value = self._GetFieldValue(field_type, self._row, self._col)
@@ -497,7 +503,7 @@ class DataParser:
             # 2011-11-29 修改
             # 若repeated第二行是类型定义，则表示当前字段是repeated，并且数据在单列用分好相隔
             second_row = str(self._sheet.cell_value(FIELD_TYPE_ROW, self._col)).strip()
-            LogHelp.get_logger().debug("repeated|%s", second_row);
+            LOG_DEBUG("repeated|%s", second_row);
             # exel有可能有小数点
             if second_row.isdigit() or second_row.find(".") != -1 :
                 # 这里后面一般会是一个结构体
@@ -505,7 +511,7 @@ class DataParser:
                 read = self._sheet.cell_value(self._row, self._col)
                 repeated_num = 0 if read == "" else int(self._sheet.cell_value(self._row, self._col))
 
-                LogHelp.get_logger().info("%s|%d|%d", field_rule, max_repeated_num, repeated_num)
+                LOG_INFO("%s|%d|%d", field_rule, max_repeated_num, repeated_num)
 
                 if max_repeated_num == 0 :
                     print "max repeated num shouldn't be 0"
@@ -525,7 +531,7 @@ class DataParser:
                 field_value_str = unicode(self._sheet.cell_value(self._row, self._col))
                 #field_value_str = unicode(self._sheet.cell_value(self._row, self._col)).strip()
 
-                # LogHelp.get_logger().info("%d|%d|%s|%s|%s",
+                # LOG_INFO("%d|%d|%s|%s|%s",
                 #         self._row, self._col, field_rule, field_type, field_name, field_value_str)
 
                 #2013-01-24 jamey
@@ -549,7 +555,7 @@ class DataParser:
             struct_name = str(self._sheet.cell_value(FIELD_NAME_ROW, self._col)).strip()
             field_name = str(self._sheet.cell_value(FIELD_COMMENT_ROW, self._col)).strip()
 
-            LogHelp.get_logger().info("%s|%d|%s|%s", field_rule, field_num, struct_name, field_name)
+            LOG_INFO("%s|%d|%s|%s", field_rule, field_num, struct_name, field_name)
 
 
             col_begin = self._col
@@ -597,7 +603,7 @@ class DataParser:
         """将pb类型转换为python类型"""
 
         field_value = self._sheet.cell_value(row, col)
-        LogHelp.get_logger().info("%d|%d|%s", row, col, field_value)
+        LOG_INFO("%d|%d|%s", row, col, field_value)
 
         try:
             if field_type == "int32" or field_type == "int64"\
