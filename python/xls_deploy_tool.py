@@ -60,7 +60,9 @@
 
 # TODO::
 # 1 时间配置人性化
-# 2
+# 2 区分server/client 配置
+# 3 repeated 优化
+# 4 struct 优化
 
 # 依赖:
 # 1 protobuf
