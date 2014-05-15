@@ -3,7 +3,7 @@
 
 ##
 # @file:   xls_deploy_tool.py
-# @author: jameyli <jameyli AT tencent DOT com>
+# @author: jameyli <lgy AT live DOT com>
 # @brief:  xls 配置导表工具
 
 # 主要功能：
@@ -31,6 +31,14 @@
 #           第三行：结构名
 #           第四行：在上层结构中的属性名
 #           数据行：不用填
+
+#    1  | required/optional | repeated  | required_struct/optional_struct   |
+#       | ------------------| ---------:| ---------------------------------:|
+#    2  | 属性类型          |           | 结构元素个数                      |
+#    3  | 属性名            |           | 结构类型名                        |
+#    4  | 注释说明          |           | 在上层结构中的属性名              |
+#    5  | 属性值            |           |                                   |
+
 #
 #
 # 开始设计的很理想，希望配置定义和配置数据保持一致,使用同一个excel
