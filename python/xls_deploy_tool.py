@@ -2,12 +2,13 @@
 #coding=utf-8
 
 ##
-# @file:   tnt_comm_deploy_tool.py
+# @file:   xls_deploy_tool.py
 # @author: jameyli <jameyli AT tencent DOT com>
-# @brief:  TNT统一配置工具
+# @brief:  xls 配置导表工具
+
 # 主要功能：
 #     1 配置定义生成，根据excel 自动生成配置的PB定义
-#     2 配置数据导入，将配置数据生成PB的二进制格式
+#     2 配置数据导入，将配置数据生成PB的序列化后的二进制数据或者文本数据
 #
 # 说明:
 #   1 excel 的前四行用于结构定义, 其余则为数据，按第一行区分, 分别解释：
@@ -37,13 +38,6 @@
 #
 # 功能基本实现，并验证过可以通过CPP解析 ohye
 #
-#
-# 不是很熟悉python, 但是已经感觉到动态语言所具有的强大功能
-# 代码基本是堆砌而成的，有点晦涩
-#
-# TODO:已经完成PB定义的生成,但嵌套结构体的定义是放在内部的
-# 想了一下，应该可以用list来实现放到外面
-#
 # 2011-06-17 修改:
 #   表名sheet_name 使用大写
 #   结构定义使用大写加下划线
@@ -55,13 +49,19 @@
 # 2011-11-29 添加功能
 # repeated 第二行如果是类型定义的话，则表明该列是repeated
 # 但是目前只支持整形
+
+# TODO::
+# 1 时间配置人性化
+# 2
+
+# 依赖:
+# 1 protobuf
+# 2 xlrd
 ##
 
 
 import xlrd # for read excel
 import sys
-import re
-import commands
 import os
 
 # TAP的空格数
@@ -184,7 +184,6 @@ class SheetInterpreter:
         # 将PB转换成py格式
         try :
             command = "protoc --python_out=./ " + self._pb_file_name
-            # commands.getoutput(command)
             os.system(command)
         except BaseException, e :
             print "protoc failed!"
