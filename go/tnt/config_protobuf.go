@@ -1,13 +1,19 @@
+/**
+* @file:   config_protobuf.go
+* @brief:  读取protobuf的文本配置
+* @author: jameyli <lgy AT live DOT com>
+*
+* @date:   2014-05-15
+ */
 package tnt
 
 import proto "code.google.com/p/goprotobuf/proto"
 import "os"
 
-func GetConfig(config_path string, pb proto.Message) error {
+func GetConfig(config_path string, msg proto.Message) error {
 
 	f, err := os.Open(config_path)
 	if err != nil {
-		// fmt.Printf("failed: %s\n", err)
 		return err
 	}
 
@@ -20,10 +26,7 @@ func GetConfig(config_path string, pb proto.Message) error {
 
 	str := string(buff[:n])
 
-	err = proto.UnmarshalText(str, pb)
-	if err != nil {
-		return err
-	}
+	err = proto.UnmarshalText(str, msg)
 
 	return err
 }
