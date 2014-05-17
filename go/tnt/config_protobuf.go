@@ -11,7 +11,6 @@ import proto "code.google.com/p/goprotobuf/proto"
 import "os"
 
 func GetConfig(config_path string, msg proto.Message) error {
-
 	f, err := os.Open(config_path)
 	if err != nil {
 		return err
@@ -19,14 +18,18 @@ func GetConfig(config_path string, msg proto.Message) error {
 
 	defer f.Close()
 
-	// TODO:: buff 的大小要合理
-	buff := make([]byte, 10240)
+	finfo, err := f.Stat()
+	if err != nil {
+		return err
+	}
 
+	buff := make([]byte, finfo.Size()+16)
 	n, err := f.Read(buff)
+	if err != nil {
+		return err
+	}
 
 	str := string(buff[:n])
 
-	err = proto.UnmarshalText(str, msg)
-
-	return err
+	return proto.UnmarshalText(str, msg)
 }
